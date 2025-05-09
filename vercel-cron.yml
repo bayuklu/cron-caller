@@ -1,0 +1,14 @@
+name: Call Vercel Cron Endpoint
+
+on:
+  schedule:
+    - cron: "*/1 * * * *"  # Menjalankan cron job setiap 10 menit (UTC)
+  workflow_dispatch:  # Bisa manual trigger jika perlu
+
+jobs:
+  ping-vercel:
+    runs-on: ubuntu-latest  # Menjalankan di server Linux
+    steps:
+      - name: Ping Vercel endpoint
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" https://b6be-180-249-114-24.ngrok-free.app/cronjob/basalim
